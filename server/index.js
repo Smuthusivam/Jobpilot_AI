@@ -16,7 +16,8 @@ const PORT = 3000;
 
 app.use(cors());
 app.use(express.json());
-app.use(express.static('public'));
+app.use(express.static('public'))
+app.use(express.static(path.join(__dirname, '../client')));
 
 // Session middleware for storing analysis data
 app.use(session({
@@ -29,8 +30,8 @@ app.use(session({
   }
 }));
 
-app.get('/', (_, res) => {
-  res.sendFile(path.join(__dirname, '..', 'client', 'index.html'));
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, '../client/index.html'));
 });
 
 const upload = multer({ 

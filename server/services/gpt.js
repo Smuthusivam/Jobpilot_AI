@@ -24,7 +24,7 @@ Please provide a comprehensive analysis with the following sections:
    - Suggest certifications or qualifications to pursue
    - Recommend formatting or structural improvements
 
-4. **COVER LETTER**: Write a professional, personalized cover letter (200-300 words) that:
+  **COVER LETTER**: Write a professional, personalized cover letter (200-300 words) that:
    - Addresses the specific role and company
    - Highlights relevant experience and skills
    - Shows enthusiasm for the position

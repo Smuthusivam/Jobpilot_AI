@@ -259,19 +259,22 @@ body {
 
 /* Cover Letter Styling */
 .cover-letter-preview {
-  max-height: 300px;
+  max-height: 2000px;
+  min-height: 600px;
   overflow-y: auto;
   border: 1px solid #dee2e6;
   border-radius: 0.5rem;
-  padding: 1rem;
+  padding: 2.5rem;
   background: white;
   font-family: 'Times New Roman', serif;
-  line-height: 1.6;
+  line-height: 1.7;
 }
 
 .cover-letter-text {
   white-space: pre-wrap;
   word-wrap: break-word;
+  font-size: 1.05rem; /* Reduced font size for cover letter */
+  padding: 1rem 0; /* More padding for comfort */
 }
 
 /* Button Enhancements */
