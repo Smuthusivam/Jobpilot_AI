@@ -48,7 +48,14 @@ const upload = multer({
   }
 });
 
-// Enhanced job description extraction with multiple methods
+/**
+ * Attempts to extract the main job description text from a job posting URL.
+ * Tries multiple selectors for common job description containers, then falls back to the body if needed.
+ * Cleans and trims the extracted text, and limits length to avoid token issues.
+ *
+ * @param {string} url - The URL of the job posting
+ * @returns {Promise<string|null>} - The cleaned job description text, or null if extraction fails
+ */
 async function extractJobDescriptionFromURL(url) {
   console.log('🌐 Extracting job description from:', url);
   
@@ -141,6 +148,12 @@ async function extractJobDescriptionFromURL(url) {
   }
 }
 
+/**
+ * Handles the main analysis request: receives a resume PDF and job URL, processes the PDF, extracts the job description,
+ * and generates an AI-powered analysis and cover letter. Cleans up uploaded files after processing.
+ *
+ * @route POST /analyze
+ */
 app.post('/analyze', upload.single('resume'), async (req, res) => {
   console.log('📝 Analysis request received');
   console.log('📁 File info:', req.file);
@@ -286,7 +299,11 @@ app.post('/analyze', upload.single('resume'), async (req, res) => {
   }
 });
 
-// Test PDF upload endpoint for debugging
+/**
+ * Endpoint for testing PDF upload and extraction. Returns extraction details for debugging.
+ *
+ * @route POST /test-pdf
+ */
 app.post('/test-pdf', upload.single('resume'), async (req, res) => {
   console.log('🧪 PDF test endpoint called');
   
@@ -337,7 +354,11 @@ app.post('/test-pdf', upload.single('resume'), async (req, res) => {
   }
 });
 
-// Edit cover letter endpoint
+/**
+ * Endpoint for saving user-edited cover letter content. Returns the updated content.
+ *
+ * @route POST /edit-cover-letter
+ */
 app.post('/edit-cover-letter', async (req, res) => {
   console.log('✏️ Cover letter edit request received');
   
@@ -369,7 +390,12 @@ app.post('/edit-cover-letter', async (req, res) => {
   }
 });
 
-// Regenerate cover letter endpoint
+/**
+ * Endpoint for regenerating a cover letter with new parameters (tone, length, focus areas).
+ * Uses the original resume and job description from the session.
+ *
+ * @route POST /regenerate-cover-letter
+ */
 app.post('/regenerate-cover-letter', async (req, res) => {
   console.log('🔄 Cover letter regeneration request received');
   
@@ -413,7 +439,11 @@ app.post('/regenerate-cover-letter', async (req, res) => {
   }
 });
 
-// Get analysis data endpoint (for editing purposes)
+/**
+ * Endpoint for retrieving analysis data by analysisId (for editing or review).
+ *
+ * @route GET /analysis/:analysisId
+ */
 app.get('/analysis/:analysisId', (req, res) => {
   const { analysisId } = req.params;
   

@@ -1,13 +1,24 @@
 <!DOCTYPE html>
+<!--
+  JobPilot AI - Main HTML File
+  ---------------------------------------------
+  This file defines the structure and layout of the JobPilot AI web application frontend.
+  It uses Bootstrap for responsive design and FontAwesome for icons.
+  All major sections and UI components are commented for clarity and maintainability.
+-->
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <title>JobPilot AI</title>
+  <!-- Bootstrap CSS for layout and components -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- FontAwesome for icons -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <!-- Custom styles for JobPilot AI -->
   <link href="style.css" rel="stylesheet">
 </head>
 <body>
+  <!-- Navigation Bar -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
     <div class="container">
       <a class="navbar-brand" href="#"><i class="fas fa-rocket me-2"></i>JobPilot AI</a>
@@ -22,6 +33,7 @@
   <div class="container py-5">
     <div class="row justify-content-center">
       <div class="col-lg-10">
+        <!-- Hero Section: App Title and Tagline -->
         <div class="hero-section text-center mb-5">
           <h1 class="display-4 mb-3">
             <i class="fas fa-magic text-primary me-3"></i>
@@ -30,33 +42,39 @@
           <p class="lead text-muted">Transform your job applications with AI-powered analysis and personalized cover letters</p>
         </div>
 
-        <!-- Progress Steps -->
+        <!-- Progress Steps: Visual indicator of workflow -->
         <div class="progress-steps mb-5">
+          <!-- Step 1: Upload Resume -->
           <div class="step active" data-step="1">
             <div class="step-circle">
               <i class="fas fa-file-upload"></i>
             </div>
             <div class="step-label">Upload Resume</div>
           </div>
+          <!-- Step 2: Job URL -->
           <div class="step" data-step="2">
             <div class="step-circle">
               <i class="fas fa-link"></i>
             </div>
             <div class="step-label">Job URL</div>
           </div>
+          <!-- Step 3: AI Analysis -->
           <div class="step" data-step="3">
             <div class="step-circle">
               <i class="fas fa-brain"></i>
             </div>
             <div class="step-label">AI Analysis</div>
           </div>
+          <!-- Step 4: Results -->
           <div class="step" data-step="4">
             <div class="step-circle">
               <i class="fas fa-check"></i>
             </div>
             <div class="step-label">Results</div>
           </div>
-        </div>        <!-- Main Form -->
+        </div>
+        
+        <!-- Main Form Card: Resume Upload and Job URL -->
         <div class="card shadow-lg border-0 mb-4">
           <div class="card-header bg-gradient-primary text-white">
             <h4 class="mb-0"><i class="fas fa-cogs me-2"></i>Job Application Analyzer</h4>
@@ -70,6 +88,7 @@
                 </label>
                 <div class="file-upload-wrapper">
                   <input type="file" class="form-control file-input" id="resume" name="resume" accept=".pdf" required>
+                  <!-- Drag-and-drop overlay for file upload -->
                   <div class="file-upload-overlay" id="fileUploadOverlay">
                     <div class="file-upload-content">
                       <i class="fas fa-cloud-upload-alt fa-3x mb-3 text-primary"></i>
@@ -79,6 +98,7 @@
                     </div>
                   </div>
                 </div>
+                <!-- File info shown after upload -->
                 <div class="file-info mt-2 d-none" id="fileInfo">
                   <div class="alert alert-success">
                     <i class="fas fa-check-circle me-2"></i>
@@ -107,7 +127,7 @@
                 <div class="url-validation mt-2 d-none" id="urlValidation"></div>
               </div>
 
-              <!-- Submit Button -->
+              <!-- Submit Button: Start Analysis -->
               <div class="text-center">
                 <button type="submit" class="btn btn-primary btn-lg px-5" id="analyzeBtn">
                   <i class="fas fa-rocket me-2"></i>
@@ -117,9 +137,11 @@
               </div>
             </form>
           </div>
-        </div>        <!-- Results Section -->
+        </div>
+        
+        <!-- Results Section: Hidden until analysis is complete -->
         <div id="result-container" class="d-none">
-          <!-- Loading Animation -->
+          <!-- Loading Animation shown during AI analysis -->
           <div id="loadingSection" class="text-center py-5">
             <div class="loading-animation">
               <div class="spinner-grow text-primary" role="status">
@@ -139,7 +161,7 @@
             </div>
           </div>
 
-          <!-- Results Content -->
+          <!-- Results Content: Match Score and Cover Letter -->
           <div id="resultsContent" class="d-none">
             <div class="row g-4">
               <!-- Match Score Card -->
@@ -151,21 +173,24 @@
                     </h5>
                   </div>
                   <div class="card-body">
+                    <!-- Circular match score indicator -->
                     <div class="match-score-circle mb-3" id="matchScoreCircle">
                       <div class="score-value" id="scoreValue">--</div>
                       <div class="score-label">Match Score</div>
                     </div>
+                    <!-- Short match summary -->
                     <div id="match" class="match-details"></div>
                     <div class="mt-3">
                       <button class="btn btn-outline-info btn-sm" onclick="toggleDetails('matchDetails')">
                         <i class="fas fa-eye me-1"></i>View Details
                       </button>
-                    </div>                    <div id="matchDetails" class="collapse mt-3">
+                    </div>
+                    <!-- Collapsible details section for key insights -->
+                    <div id="matchDetails" class="collapse mt-3">
                       <div class="alert alert-light">
                         <h6><i class="fas fa-lightbulb me-2"></i>Key Insights:</h6>
                         <ul id="keyInsights" class="mb-0"></ul>
                       </div>
-                      
                       <!-- Dynamic improvements section will be added here by JavaScript -->
                     </div>
                   </div>
@@ -179,6 +204,7 @@
                     <h5 class="mb-0">
                       <i class="fas fa-envelope me-2"></i>Cover Letter
                     </h5>
+                    <!-- Export dropdown for cover letter -->
                     <div class="dropdown">
                       <button class="btn btn-outline-light btn-sm dropdown-toggle" type="button" 
                               data-bs-toggle="dropdown">
@@ -195,6 +221,7 @@
                     </div>
                   </div>
                   <div class="card-body">
+                    <!-- Cover letter preview area -->
                     <div class="cover-letter-preview">
                       <div id="coverLetter" class="cover-letter-text"></div>
                     </div>
@@ -211,7 +238,7 @@
               </div>
             </div>
 
-            <!-- Action Buttons -->
+            <!-- Action Buttons: Reset or Share -->
             <div class="text-center mt-4">
               <button class="btn btn-outline-secondary me-2" onclick="resetForm()">
                 <i class="fas fa-redo me-2"></i>Analyze Another Job
@@ -226,7 +253,7 @@
     </div>
   </div>
 
-  <!-- Toast Notifications -->
+  <!-- Toast Notifications: Success and Error -->
   <div class="toast-container position-fixed bottom-0 end-0 p-3">
     <div id="successToast" class="toast" role="alert">
       <div class="toast-header bg-success text-white">
@@ -246,8 +273,12 @@
       <div class="toast-body"></div>
     </div>
   </div>
+  
+  <!-- Bootstrap JS Bundle (includes Popper) -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Marked.js for Markdown parsing (used in results rendering) -->
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <!-- Main frontend logic for JobPilot AI -->
   <script src="main.js"></script>
 </body>
 </html>

@@ -7,6 +7,19 @@ const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
 
+/**
+ * Generates an AI-powered analysis and cover letter for a given resume and job description.
+ *
+ * The AI is prompted to:
+ *  - Rate the match between the resume and job requirements (MATCH SCORE)
+ *  - List 2-3 key strengths (STRENGTHS)
+ *  - Suggest 3-5 actionable improvements (WAYS TO IMPROVE)
+ *  - Write a professional, personalized cover letter (COVER LETTER)
+ *
+ * @param {string} resumeText - The full text of the user's resume
+ * @param {string} jobDescription - The full text of the job description
+ * @returns {Promise<{ ai_output: string }>} - The AI's full response, including all sections
+ */
 async function generateAIResponse(resumeText, jobDescription) {
   const prompt = `
 You are an AI assistant that helps evaluate resumes for job applications.
@@ -24,7 +37,7 @@ Please provide a comprehensive analysis with the following sections:
    - Suggest certifications or qualifications to pursue
    - Recommend formatting or structural improvements
 
-  **COVER LETTER**: Write a professional, personalized cover letter (200-300 words) that:
+4. **COVER LETTER**: Write a professional, personalized cover letter (200-300 words) that:
    - Addresses the specific role and company
    - Highlights relevant experience and skills
    - Shows enthusiasm for the position
@@ -49,6 +62,23 @@ Please format your response clearly with section headers and use specific exampl
   return { ai_output: response.choices[0].message.content };
 }
 
+/**
+ * Regenerates a tailored cover letter using the AI, with options for tone, length, and focus areas.
+ *
+ * The AI is instructed to:
+ *  - Use the specified tone (professional, formal, conversational, enthusiastic)
+ *  - Write to the specified length (short, medium, long)
+ *  - Focus on any user-specified areas (e.g., technical skills, leadership)
+ *  - Address the specific role and company, highlight relevant experience, and include a strong opening/closing
+ *
+ * @param {string} resumeText - The full text of the user's resume
+ * @param {string} jobDescription - The full text of the job description
+ * @param {Object} options - Options for tone, length, and focus areas
+ * @param {string} [options.tone] - The desired tone for the letter
+ * @param {string} [options.length] - The desired length for the letter
+ * @param {string[]} [options.focusAreas] - Specific areas to emphasize in the letter
+ * @returns {Promise<string>} - The generated cover letter content only
+ */
 async function regenerateCoverLetter(resumeText, jobDescription, options = {}) {
   const { tone = 'professional', length = 'medium', focusAreas = [] } = options;
   

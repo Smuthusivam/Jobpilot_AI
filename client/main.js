@@ -424,7 +424,18 @@ function setScoreCircleVisible(visible) {
   }
 }
 
-// Format the match analysis content for display
+/**
+ * Formats the match analysis content for display in the UI.
+ * Cleans up markdown, removes unwanted artifacts, and applies custom HTML formatting for sections and lists.
+ * - Removes markdown headers, horizontal rules, bold markers, and template artifacts
+ * - Converts bullet points to HTML lists
+ * - Wraps improvement and strength sections in styled divs
+ * - Hides 'Match Score' and 'Score' lines (score is shown in the circle only)
+ * - Highlights percentages and quoted keywords
+ *
+ * @param {string} content - Raw match analysis content (from AI or fallback)
+ * @returns {string} - HTML-formatted string for display
+ */
 function formatMatchContent(content) {
   // Enhanced formatting for match content with structured improvements
   let formatted = content;
@@ -439,11 +450,11 @@ function formatMatchContent(content) {
   // Remove all occurrences of '**' (bold markers)
   formatted = formatted.replace(/\*\*/g, '');
 
-  // Format bullet points
+  // Format bullet points as HTML list items
   formatted = formatted.replace(/^\s*[-*]\s+/gm, '<li>');
   formatted = formatted.replace(/\n(?=<li>)/g, '</li>\n');
 
-  // Wrap lists in ul tags
+  // Wrap lists in ul tags if any list items are present
   if (formatted.includes('<li>')) {
     formatted = formatted.replace(/(<li>.*?)(?=\n(?![<li>])|$)/gs, '<ul class="improvement-list">$1</li></ul>');
   }
@@ -458,20 +469,20 @@ function formatMatchContent(content) {
   // Remove 'Match Score:' or 'Score:' lines entirely from the output
   formatted = formatted.replace(/^(Match Score|Score):.*$/gmi, '');
 
-  // Format percentages and scores
+  // Format percentages and scores as badges
   formatted = formatted.replace(/(\d+)%/g, '<span class="badge bg-primary">$1%</span>');
 
-  // Format keywords in quotes
+  // Highlight keywords in quotes
   formatted = formatted.replace(/"([^"]+)"/g, '<span class="keyword-highlight">"$1"</span>');
 
-  // Close sections
+  // Close sections if any are open
   if (formatted.includes('<div class="improvement-section">') || 
       formatted.includes('<div class="strength-section">') || 
       formatted.includes('<div class="score-section">')) {
     formatted = formatted.replace(/(<div class="[^"]*-section">.*?)(?=<div class="[^"]*-section">|$)/gs, '$1</div>');
   }
 
-  // Format line breaks
+  // Convert line breaks to <br> for HTML display
   formatted = formatted.replace(/\n/g, '<br>');
 
   return formatted;

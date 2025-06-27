@@ -1,5 +1,17 @@
-/* JobPilot AI Enhanced Styles */
+/*
+  JobPilot AI Enhanced Stylesheet
+  --------------------------------
+  This file contains all custom CSS for the JobPilot AI web application.
+  It defines color variables, layout, UI components, responsive design, and visual enhancements.
+  Each section is commented for clarity and maintainability.
+*/
 
+/*
+  CSS Variables for Theme Colors and Effects
+  ------------------------------------------
+  Define primary, secondary, success, info, warning, danger, and other color variables.
+  Also includes gradients and shadow presets for consistent styling.
+*/
 :root {
   --primary-color: #007bff;
   --secondary-color: #6c757d;
@@ -17,12 +29,22 @@
   --shadow-lg: 0 1rem 3rem rgba(0, 0, 0, 0.175);
 }
 
+/*
+  Base Body Styles
+  ----------------
+  Sets background gradient, minimum height, and default font family.
+*/
 body {
   background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
   min-height: 100vh;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+/*
+  Navbar and Hero Section
+  ----------------------
+  Styles for the app's navbar and hero banner.
+*/
 .navbar-brand {
   font-weight: 700;
   font-size: 1.5rem;
@@ -41,7 +63,11 @@ body {
   font-weight: 700;
 }
 
-/* Progress Steps */
+/*
+  Progress Steps
+  --------------
+  Visual stepper for multi-step process (upload, analyze, review, etc.)
+*/
 .progress-steps {
   display: flex;
   justify-content: center;
@@ -121,7 +147,11 @@ body {
   font-weight: 600;
 }
 
-/* Card Styling */
+/*
+  Card Styling
+  ------------
+  Styles for card containers used throughout the UI.
+*/
 .card {
   border: none;
   border-radius: 0.75rem;
@@ -144,7 +174,11 @@ body {
   background: var(--gradient-primary) !important;
 }
 
-/* File Upload Styling */
+/*
+  File Upload Styling
+  ------------------
+  Drag-and-drop and file input styles for resume upload.
+*/
 .file-upload-wrapper {
   position: relative;
   border: 2px dashed #dee2e6;
@@ -185,7 +219,11 @@ body {
   margin-bottom: 0.5rem;
 }
 
-/* Loading Animation */
+/*
+  Loading Animation
+  -----------------
+  Spinner and loading indicator styles.
+*/
 .loading-animation {
   display: flex;
   justify-content: center;
@@ -205,7 +243,11 @@ body {
   animation-delay: 0.3s;
 }
 
-/* Match Score Circle */
+/*
+  Match Score Circle
+  ------------------
+  Visual circular indicator for resume-job match score.
+*/
 .match-score-circle {
   width: 120px;
   height: 120px;
@@ -257,7 +299,11 @@ body {
   background: conic-gradient(var(--danger-color) 0deg, var(--danger-color) 144deg, #e9ecef 144deg);
 }
 
-/* Cover Letter Styling */
+/*
+  Cover Letter Styling
+  -------------------
+  Styles for the cover letter preview and text area.
+*/
 .cover-letter-preview {
   max-height: 2000px;
   min-height: 600px;
@@ -277,7 +323,11 @@ body {
   padding: 1rem 0; /* More padding for comfort */
 }
 
-/* Button Enhancements */
+/*
+  Button Enhancements
+  ------------------
+  Styles for large, primary, success, and info buttons.
+*/
 .btn-lg {
   padding: 0.75rem 2rem;
   font-size: 1.1rem;
@@ -307,13 +357,21 @@ body {
   border: none;
 }
 
-/* Toast Notifications */
+/*
+  Toast Notifications
+  -------------------
+  Styles for toast pop-up notifications.
+*/
 .toast {
   box-shadow: var(--shadow-lg);
   border: none;
 }
 
-/* Responsive Design */
+/*
+  Responsive Design
+  -----------------
+  Adjusts layout and font sizes for smaller screens.
+*/
 @media (max-width: 768px) {
   .hero-section {
     padding: 2rem 1rem;
@@ -355,7 +413,11 @@ body {
   }
 }
 
-/* Animation Classes */
+/*
+  Animation Classes
+  -----------------
+  Fade-in and slide-up animations for UI elements.
+*/
 .fade-in {
   animation: fadeIn 0.5s ease-in;
 }
@@ -374,7 +436,11 @@ body {
   to { transform: translateY(0); opacity: 1; }
 }
 
-/* Utility Classes */
+/*
+  Utility Classes
+  ---------------
+  Text gradients, glass backgrounds, and other helpers.
+*/
 .text-gradient {
   background: var(--gradient-primary);
   -webkit-background-clip: text;
@@ -388,7 +454,10 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-/* Custom Scrollbar */
+/*
+  Custom Scrollbar for Cover Letter Preview
+  ----------------------------------------
+*/
 .cover-letter-preview::-webkit-scrollbar {
   width: 6px;
 }
@@ -407,7 +476,11 @@ body {
   background: #0056b3;
 }
 
-/* Improvement Section Styling */
+/*
+  Improvement, Strength, and Score Sections
+  -----------------------------------------
+  Highlighted sections for actionable feedback and strengths.
+*/
 .improvement-section,
 .strength-section,
 .score-section {
@@ -460,7 +533,11 @@ body {
   color: var(--dark-color);
 }
 
-/* Improvements Breakdown */
+/*
+  Improvements Breakdown
+  ----------------------
+  Card and list styles for detailed improvement suggestions.
+*/
 .improvements-breakdown {
   animation: slideIn 0.5s ease-out;
 }
@@ -500,7 +577,11 @@ body {
   flex-shrink: 0;
 }
 
-/* Enhanced Match Details */
+/*
+  Enhanced Match Details
+  ----------------------
+  Styles for the match details and badges.
+*/
 .match-details {
   font-size: 0.95rem;
   line-height: 1.6;
@@ -518,7 +599,11 @@ body {
   margin: 0 0.2rem;
 }
 
-/* Priority-based styling for improvements */
+/*
+  Priority-based styling for improvements
+  --------------------------------------
+  Visual cues for high, medium, and low priority improvement items.
+*/
 .improvement-item[data-priority="high"] {
   border-left: 4px solid var(--danger-color);
 }
@@ -531,7 +616,11 @@ body {
   border-left: 4px solid var(--info-color);
 }
 
-/* Animated elements */
+/*
+  Animated elements
+  -----------------
+  Slide-in animation for improvement sections.
+*/
 @keyframes slideIn {
   from {
     opacity: 0;
@@ -549,7 +638,10 @@ body {
   animation: slideIn 0.4s ease-out;
 }
 
-/* Responsive improvements */
+/*
+  Responsive improvements for improvement sections
+  -----------------------------------------------
+*/
 @media (max-width: 768px) {
   .improvement-section,
   .strength-section,
@@ -572,7 +664,11 @@ body {
   }
 }
 
-/* Modal Enhancements */
+/*
+  Modal Enhancements
+  ------------------
+  Styles for modal dialogs and their headers/footers.
+*/
 .modal-content {
   border-radius: 0.75rem;
   box-shadow: var(--shadow-lg);
@@ -588,7 +684,11 @@ body {
   border-radius: 0 0 0.75rem 0.75rem;
 }
 
-/* Cover Letter Editor */
+/*
+  Cover Letter Editor
+  -------------------
+  Styles for the textarea/modal used to edit the cover letter.
+*/
 #coverLetterEditor {
   font-family: 'Times New Roman', serif;
   line-height: 1.6;
@@ -602,13 +702,21 @@ body {
   box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
 }
 
-/* Character/Word Count */
+/*
+  Character/Word Count
+  --------------------
+  Styles for character and word count indicators in the editor.
+*/
 #charCount, #wordCount {
   font-weight: 600;
   color: var(--primary-color);
 }
 
-/* Form Controls in Modals */
+/*
+  Form Controls in Modals
+  ----------------------
+  Styles for select and input controls in modals.
+*/
 .modal .form-select,
 .modal .form-control {
   border-radius: 0.5rem;
@@ -622,13 +730,21 @@ body {
   box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
 }
 
-/* Loading States */
+/*
+  Loading States
+  --------------
+  Disabled button appearance during loading.
+*/
 .btn[disabled] {
   opacity: 0.7;
   cursor: not-allowed;
 }
 
-/* Enhanced File Upload Error Handling */
+/*
+  Enhanced File Upload Error Handling
+  ----------------------------------
+  Styles for error state in file upload area.
+*/
 .file-upload-error {
   border-color: var(--danger-color) !important;
   background: rgba(220, 53, 69, 0.05) !important;
@@ -638,7 +754,11 @@ body {
   color: var(--danger-color);
 }
 
-/* Session Storage Indicator */
+/*
+  Session Storage Indicator
+  ------------------------
+  Fixed indicator for session status.
+*/
 .session-indicator {
   position: fixed;
   top: 70px;
