@@ -448,15 +448,15 @@ function formatMatchContent(content) {
     formatted = formatted.replace(/(<li>.*?)(?=\n(?![<li>])|$)/gs, '<ul class="improvement-list">$1</li></ul>');
   }
 
-  // Format sections with headers
+  // Format sections with headers (except Match Score/Score, which we want to hide)
   formatted = formatted.replace(/^(Ways to improve|Improvements?|Suggestions?|Recommendations?):/gmi, 
     '<div class="improvement-section"><h6 class="improvement-header"><i class="fas fa-lightbulb text-warning me-2"></i>$1:</h6>');
 
   formatted = formatted.replace(/^(Strengths?|Strong points?):/gmi, 
     '<div class="strength-section"><h6 class="strength-header"><i class="fas fa-check-circle text-success me-2"></i>$1:</h6>');
 
-  formatted = formatted.replace(/^(Match Score|Score):/gmi, 
-    '<div class="score-section"><h6 class="score-header"><i class="fas fa-chart-line text-info me-2"></i>$1:</h6>');
+  // Remove 'Match Score:' or 'Score:' lines entirely from the output
+  formatted = formatted.replace(/^(Match Score|Score):.*$/gmi, '');
 
   // Format percentages and scores
   formatted = formatted.replace(/(\d+)%/g, '<span class="badge bg-primary">$1%</span>');
